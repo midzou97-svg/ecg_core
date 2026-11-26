@@ -1,0 +1,29 @@
+#pragma once
+
+#include "IEcgSource.h"
+
+namespace ecg {
+
+class RingEcgSource final : public IEcgSource {
+    Q_OBJECT
+
+public:
+    explicit RingEcgSource(QObject* parent = nullptr);
+
+    QCoro::Task<QVector<EcgDeviceDescriptor>> listDevices() override;
+    QCoro::Task<bool> open(const EcgDeviceDescriptor& device) override;
+    QCoro::Task<bool> start() override;
+    QCoro::Task<bool> stop() override;
+    QCoro::Task<bool> close() override;
+
+    SourceState state() const override;
+    EcgDeviceInfo deviceInfo() const override;
+    EcgStreamInfo streamInfo() const override;
+
+private:
+    EcgDeviceInfo m_info;
+    EcgStreamInfo m_stream;
+    EcgDeviceDescriptor m_selectedDevice;
+};
+
+} // namespace ecg

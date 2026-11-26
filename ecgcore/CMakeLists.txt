@@ -2,12 +2,6 @@ qt_add_library(EcgCore SHARED
     EcgCore_global.h
     ecg_types.h
     IEcgSource.h
-    EcgSourceFactory.h
-    EcgSourceFactory.cpp
-    RingEcgSource.h
-    RingEcgSource.cpp
-    KrpEcgSource.h
-    KrpEcgSource.cpp
     IEcgDeviceDiscovery.h
 )
 
