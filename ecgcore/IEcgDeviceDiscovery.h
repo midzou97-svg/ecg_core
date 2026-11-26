@@ -11,22 +11,20 @@
 namespace ecg {
 
 class ECGCORE_EXPORT IEcgDeviceDiscovery : public QObject {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-    explicit IEcgDeviceDiscovery(QObject* parent = nullptr)
-        : QObject(parent) {}
+  explicit IEcgDeviceDiscovery(QObject *parent = nullptr) : QObject(parent) {}
 
-    virtual ~IEcgDeviceDiscovery() = default;
+  virtual ~IEcgDeviceDiscovery() = default;
 
-    virtual QCoro::Task<bool> startDiscovery() = 0;
-    virtual QCoro::Task<bool> stopDiscovery() = 0;
-    virtual bool isDiscovering() const = 0;
+  virtual QCoro::Task<bool> startDiscovery() = 0;
+  virtual QCoro::Task<bool> stopDiscovery() = 0;
+  virtual bool isDiscovering() const = 0;
 
 signals:
-    void deviceFound(const ecg::EcgDeviceDescriptor& device);
-    void discoveryFinished();
-    void errorOccurred(int code, const QString& message);
+  void deviceFound(const ecg::EcgDeviceDescriptor &device);
+  void discoveryFinished();
 };
 
 } // namespace ecg
