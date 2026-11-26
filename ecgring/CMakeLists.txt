@@ -3,12 +3,17 @@ qt_add_library(EcgRing STATIC
     RingEcgSource.cpp
     RingSourceApi.h
     RingSourceApi.cpp
+    RingConnection.h
+    RingConnection.cpp
+    RingProtocol.h
+    RingProtocol.cpp
 )
 
 target_link_libraries(EcgRing
     PUBLIC
         EcgCore
         Qt6::Core
+        Qt6::Bluetooth
         QCoro6::Core
 )
 

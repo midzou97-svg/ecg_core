@@ -1,6 +1,10 @@
 #pragma once
 
 #include "IEcgSource.h"
+#include "RingConnection.h"
+
+#include <QBluetoothDeviceDiscoveryAgent>
+#include <QVector>
 
 namespace ecg {
 
@@ -20,10 +24,23 @@ public:
     EcgDeviceInfo deviceInfo() const override;
     EcgStreamInfo streamInfo() const override;
 
+private slots:
+    void onConnectionConnected();
+    void onConnectionDisconnected();
+    void onConnectionError(const QString& message);
+    void onRingFrame(const RingProtocol::Frame& frame);
+    void onDiscoveryFinished();
+    void onDiscoveryError(QBluetoothDeviceDiscoveryAgent::Error error);
+
 private:
     EcgDeviceInfo m_info;
     EcgStreamInfo m_stream;
     EcgDeviceDescriptor m_selectedDevice;
+
+    RingConnection* m_connection = nullptr;
+    QBluetoothDeviceDiscoveryAgent* m_discoveryAgent = nullptr;
+    QVector<EcgDeviceDescriptor> m_devices;
+    bool m_running = false;
 };
 
 } // namespace ecg
