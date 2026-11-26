@@ -3,9 +3,6 @@
 
 namespace ecg::ring {
 
-IEcgSource* createSource(QObject* parent)
-{
-    return new RingEcgSource(parent);
-}
+IEcgSource *createSource(QObject *parent) { return new RingEcgSource(parent); }
 
 } // namespace ecg::ring

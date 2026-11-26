@@ -3,9 +3,6 @@
 
 namespace ecg::krp {
 
-IEcgSource* createSource(QObject* parent)
-{
-    return new KrpEcgSource(parent);
-}
+IEcgSource *createSource(QObject *parent) { return new KrpEcgSource(parent); }
 
 } // namespace ecg::krp
